@@ -1,0 +1,29 @@
+.App {
+  text-align: right;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 120px;
+
+}
+
+.App-header {
+  background-image: url(https://i0.wp.com/postscript.com.au/wp-content/uploads/2017/09/helping-hands.jpg?resize=660%2C400&ssl=1);
+  height:350px;
+  padding: 10px;
+  color: black;
+}
+
+.App-title {
+  font-size: 1.3em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+/*@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}*/
