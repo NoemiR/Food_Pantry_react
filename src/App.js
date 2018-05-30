@@ -6,6 +6,12 @@ import FamilyRegistration from './FamilyRegistration'
 import VolunteerRegistration from './VolunteerRegistration'
 import ScheduleList from './ScheduleList'
 import PickupList from './PickupList'
+import CreateSchedule from './CreateSchedule'
+
+
+
+
+
 
 class App extends Component {
   constructor(){
@@ -238,6 +244,26 @@ class App extends Component {
     return schedules;
   }
 
+  addSchedule = async (date, title, note, type, volunteer_id, family_id) => {
+    const schedule = await fetch('http://localhost:9292/schedules', {
+      method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify({
+        date: date,
+        title: title,
+        note: note,
+        type: type,
+        volunteer_id: volunteer_id, 
+        family_id: family_id
+
+      })
+    });
+      const scheduleParsedAddResponse = await schedule.json()
+      this.setState({schedule: [...this.state.schedules, scheduleParsedAddResponse]})
+      return scheduleParsedAddResponse;
+  
+  }
+
   // getShifts = async () => {
   //   const shiftsJson = await fetch('http://localhost:9292/shifts', {
   //     credentials: 'include'
@@ -252,6 +278,7 @@ class App extends Component {
     const pickups = await pickupsJson.json();
     return pickups;
   }
+
         
 
 
@@ -274,7 +301,7 @@ class App extends Component {
 
         <ScheduleList getSchedules={this.getSchedules} schedules={this.state.schedules}/>
         <PickupList getPickups={this.getPickups} pickups={this.state.pickups}/>
-
+        <CreateSchedule addSchedule={this.addSchedule} schedules={this.state.schedules}/>
       </div>
     );
   }
