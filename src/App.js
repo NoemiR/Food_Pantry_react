@@ -165,22 +165,22 @@ class App extends Component {
     })
 
     const parsedVolounteerRegisterResponse = await promiseResponse.json();
-      if(parsedVolounteerRegisterResponse.success){
-        this.setState({
-          loggedIn: true
+    if(parsedVolounteerRegisterResponse.success){
+      this.setState({
+        loggedIn: true
+      })
+      this.getVolunteers()
+        .then((volunteers) => {
+          console.log(volunteers, 'this is the parsedVolounteerRegisterResponse')
+          this.setState({volunteers: volunteers})
         })
-        this.getVolunteers()
-          .then((volunteers) => {
-            console.log(volunteers, 'this is the parsedVolounteerRegisterResponse')
-            this.setState({volunteers: volunteers})
-          })
-          .catch((err) => {
-            console.log(err)
-          })
-      }else {
-        this.setState({
-          loginErr: parsedVolounteerRegisterResponse.message
+        .catch((err) => {
+          console.log(err)
         })
+    } else {
+      this.setState({
+        loginErr: parsedVolounteerRegisterResponse.message
+      })
 
     }
   }
@@ -228,9 +228,10 @@ class App extends Component {
 
       })
     });
-      const scheduleParsedAddResponse = await schedule.json()
-      this.setState({schedule: [...this.state.schedules, scheduleParsedAddResponse]})
-      return scheduleParsedAddResponse;
+    const scheduleParsedAddResponse = await schedule.json()
+    console.log(scheduleParsedAddResponse)
+    this.setState({schedules: [...this.state.schedules, scheduleParsedAddResponse]})
+    return scheduleParsedAddResponse;
   
   }
 
@@ -330,21 +331,22 @@ class App extends Component {
 
     return (
      
-        <div className="App">
-          <button className="button" id="family" onClick={this.handleClick}>Family</button>
-          <button className="button" id="volunteer" onClick={this.handleClick}>Volunteer</button>
-          <button className="button" id="schedule" onClick={this.handleClick}>Schedule</button>
-        
-         
+      <div className="App">
+
+        <button className="button" id="family" onClick={this.handleClick}>Family</button>
+        <button className="button" id="volunteer" onClick={this.handleClick}>Volunteer</button>
+        <button className="button" id="schedule" onClick={this.handleClick}>Schedule</button>
+
+        <header className="App-header">
+        <img src={Logo} className="App-logo" alt="logo" />
+        <h1 className="App-title">One helping hand in time is better than one hundred that are too late</h1>
+        </header>
+     
         <div>
           {page}
         </div>
        
         <PickupDisplay getPickups={this.getPickups} pickups={this.state.pickups}/>
-        
-       
-         
-     
       </div>
     );
   }

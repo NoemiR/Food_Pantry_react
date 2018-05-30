@@ -9,10 +9,12 @@
 }
 
 .App-header {
-  background-image: url(https://i0.wp.com/postscript.com.au/wp-content/uploads/2017/09/helping-hands.jpg?resize=660%2C400&ssl=1);
+  background-image: url(https://images.unsplash.com/photo-1512581574034-6f1da619c5fa?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=592069c0e5ea3f6eaa7192f997e04f29&auto=format&fit=crop&w=1631&q=80);
   height:350px;
   padding: 10px;
-  color: black;
+  color: white;
+  text-align: left;
+  font-size: 20px;
 }
 
 .App-title {
@@ -23,7 +25,7 @@
   font-size: large;
 }
 body{
-  background-image: url(https://images.unsplash.com/photo-1526028034489-f76e5a422446?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f191e636831750dc891d0713bd3b98aa&auto=format&fit=crop&w=1568&q=80);
+  background-image: url(https://images.unsplash.com/photo-1515549832467-8783363e19b6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6d90809d92f0fff3219b075d0a119ee4&auto=format&fit=crop&w=800&q=60);
 }
 
 /*@keyframes App-logo-spin {

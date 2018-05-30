@@ -1,6 +1,18 @@
+ul {
+	padding: 0;
+	/*height: 500px;*/
+	width: 70%;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: left;
+
+}
 .scheduleList {
-	display: block;
+	display: inline-block;
 	text-align: center;
+	vertical-align: top;
+	height: 100px;
+	width: 100px;
 	border: 1px solid black;
 	background: rgba(0, 0, 0, 0.3);
 
