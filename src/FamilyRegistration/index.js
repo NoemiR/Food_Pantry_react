@@ -38,6 +38,7 @@ class FamilyRegistration extends Component {
 	render() {
 
 		console.log(this.props.families, ' this is families in family registration')
+
 		return (
 			<div> 
 				<h1>Family Registration</h1>
@@ -58,7 +59,7 @@ class FamilyRegistration extends Component {
 
 				}
 			</div>
-				)
+		)
 	}
 }
 

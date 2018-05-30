@@ -7,7 +7,7 @@ const FamilyList = ({families}) => {
 
 	const familyList = families.map((family, i) => {
 		return (
-			<li key={family.id}>{family.name}</li>
+			<li key={family.id}>{family.name}<br/>{family.phone}<br/>{family.address}</li>
 
 
 

@@ -61,17 +61,7 @@ class VolunteerRegistration extends Component {
 			</div>
 
 
-
-
-
-
-
-
-
-
-
-
-			)
+		)
 	}
 }
 

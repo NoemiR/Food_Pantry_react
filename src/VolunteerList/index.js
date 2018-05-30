@@ -8,7 +8,7 @@ const VolunteerList = ({volunteers}) => {
 	const volunteerList = volunteers.map((volunteer, i)=> {
 		return (
 
-			<li key={volunteer.id}>{volunteer.name}</li>
+			<li key={volunteer.id}>{volunteer.name}<br/>{volunteer.phone}</li>
 
 
 		)
