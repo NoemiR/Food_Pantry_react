@@ -5,6 +5,7 @@ import AdminLoginRegister from './AdminLoginRegister'
 import FamilyRegistration from './FamilyRegistration'
 import VolunteerRegistration from './VolunteerRegistration'
 import ScheduleList from './ScheduleList'
+import PickupList from './PickupList'
 
 class App extends Component {
   constructor(){
@@ -56,6 +57,16 @@ class App extends Component {
     .then((schedules) => {
       console.log(schedules, 'this is the schedules')
       this.setState({schedules: schedules})
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+
+    this.getPickups()
+    .then((pickups) => {
+      console.log(pickups, 'this is the schedules')
+      this.setState({pickups: pickups})
     })
     .catch((err) => {
       console.log(err)
@@ -234,13 +245,13 @@ class App extends Component {
   //   const shifts = await shiftsJson.json();
   //   return shifts;
   // }
-  // getPickups = async () => {
-  //   const pickupsJson = await fetch('http://localhost:9292/pickups', {
-  //     credentials: 'include'
-  //   });
-  //   const pickups = await pickupsJson.json();
-  //   return pickups;
-  // 
+  getPickups = async () => {
+    const pickupsJson = await fetch('http://localhost:9292/pickups', {
+      credentials: 'include'
+    });
+    const pickups = await pickupsJson.json();
+    return pickups;
+  }
         
 
 
@@ -262,6 +273,8 @@ class App extends Component {
         <AdminLoginRegister registerAdmin={this.registerAdmin} loginAdmin={this.loginAdmin}/>
 
         <ScheduleList getSchedules={this.getSchedules} schedules={this.state.schedules}/>
+        <PickupList getPickups={this.getPickups} pickups={this.state.pickups}/>
+
       </div>
     );
   }
