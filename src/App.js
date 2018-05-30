@@ -23,7 +23,9 @@ class App extends Component {
       schedules: [],
       volunteers: [],
       admins: [],
-      loggedIn: false
+      loggedIn: false,
+      whichPage: '',
+      buttons: true
     }
   }
 
@@ -297,19 +299,49 @@ class App extends Component {
   }  
 
 
+  handleClick = (e) => {
+    console.log(e.currentTarget.id)
+    this.setState({
+      buttons: false,
+      whichPage: e.currentTarget.id
+    })
+  }
+
+
+
+
+
+
 
 
 
 
   render() {
     console.log(this.state, ' this.state')
+
+    let page;
+      if(this.state.whichPage == "family"){
+          page = <FamilyDisplay getFamilies={this.getfamilies} registerFamily={this.registerFamily} families={this.state.families}/>
+      } else if(this.state.whichPage == "volunteer"){
+        page=  <VolunteerDisplay getVolunteers={this.getVolunteers} registerVolunteer={this.registerVolunteer} volunteers={this.state.volunteers}/>
+      }else {
+         page = <ScheduleDisplay getSchedules={this.getSchedules} addSchedule={this.addSchedule} schedules={this.state.schedules}/>
+      }
+
     return (
-      <div className="App">
- 
-        <FamilyDisplay getFamilies={this.getfamilies} registerFamily={this.registerFamily} families={this.state.families}/>
-        <VolunteerDisplay getVolunteers={this.getVolunteers} registerVolunteer={this.registerVolunteer} volunteers={this.state.volunteers}/>
+     
+        <div className="App">
+          <button className="button" id="family" onClick={this.handleClick}>Family</button>
+          <button className="button" id="volunteer" onClick={this.handleClick}>Volunteer</button>
+          <button className="button" id="schedule" onClick={this.handleClick}>Schedule</button>
+        
+         
+        <div>
+          {page}
+        </div>
+       
         <PickupDisplay getPickups={this.getPickups} pickups={this.state.pickups}/>
-        <ScheduleDisplay getSchedules={this.getSchedules} addSchedule={this.addSchedule} schedules={this.state.schedules}/>
+        
        
          
      

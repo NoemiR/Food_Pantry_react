@@ -56,7 +56,7 @@ class CreateSchedule extends Component {
 						<input type="text" name="note" placeholder="note" value={this.state.note} onChange={this.handleInput}/> <br/>
 						<input type="text" name="volunteer_id" placeholder="volunteer id" value={this.state.volunteer_id} onChange={this.handleInput}/> <br/>
 						<input type="text" name="family_id" placeholder="family id" value={this.state.family_id} onChange={this.handleInput}/> <br/>
-						<button type="Submit" value="active" onChange={this.handleInput}>Submit</button>
+						<button type="Submit" onChange={this.handleInput}>Submit</button>
 					</form>
 				</div>
 			
