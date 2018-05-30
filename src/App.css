@@ -1,5 +1,5 @@
 .App {
-  text-align: right;
+  text-align: center;
 }
 
 .App-logo {
@@ -21,6 +21,9 @@
 
 .App-intro {
   font-size: large;
+}
+body{
+  background-image: url(https://images.unsplash.com/photo-1526028034489-f76e5a422446?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f191e636831750dc891d0713bd3b98aa&auto=format&fit=crop&w=1568&q=80);
 }
 
 /*@keyframes App-logo-spin {

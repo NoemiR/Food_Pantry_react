@@ -1,0 +1,22 @@
+.form input{
+	height: 30px;
+	width: 50%;
+	text-align: center;
+	margin: 5px;
+	font-size: 25px;
+}
+
+.form {
+	display: inline-block;
+	border: 1px solid black;
+	height: 500px;
+	width: 70%;
+	background: rgba(0, 0, 0, 0.5);
+
+}
+button {
+	height: 30px;
+	color: white;
+	background: blue;
+	font-size: 15px;
+}

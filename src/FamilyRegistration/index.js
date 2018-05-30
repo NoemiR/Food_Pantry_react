@@ -41,9 +41,10 @@ class FamilyRegistration extends Component {
 
 		return (
 			<div> 
-				<h1>Family Registration</h1>
-				{ this.state.active ? <FamilyList families={this.props.families}/> :
+				
+				
 					<div className="form">
+					<h1>Family Registration</h1>
 						<form onSubmit={this.handleSubmit}>
 							<input type="text" name="name" placeholder="name" value={this.state.name} onChange={this.handleInput}/> <br/>
 							<input type="text" name="phone" placeholder="phone" value={this.state.phone} onChange={this.handleInput}/> <br/>
@@ -57,7 +58,7 @@ class FamilyRegistration extends Component {
 						</form>
 					</div> 
 
-				}
+			
 			</div>
 		)
 	}

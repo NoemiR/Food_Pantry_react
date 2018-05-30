@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import './style.css'
 
 
 
@@ -9,7 +9,7 @@ const PickupList = ({pickups}) => {
 
 	const pickupList = pickups.map((pickup, i) => {
 		return (
-			<li key={pickup.id}>{pickup.date}<br/>{pickup.family_id}<br/>{pickup.schedule_id}</li>
+			<li className="pickupList" key={pickup.id}>Date {pickup.date}<br/>Family Id {pickup.family_id}<br/>Schedule {pickup.schedule_id}</li>
 
 
 

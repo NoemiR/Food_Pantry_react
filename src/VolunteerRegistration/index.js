@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import VolunteerList from '../VolunteerList'
-
+import './style.css'
 class VolunteerRegistration extends Component {
 	constructor(){
 		super();
@@ -42,9 +42,10 @@ class VolunteerRegistration extends Component {
 		return (
 
 			<div>
-				<h1> Volunteer Registration</h1>
-				{this.state.active ? <VolunteerList volunteers={this.props.volunteers}/> :
+				
+				
 					<div className="form">
+						<h1> Volunteer Registration</h1>
 						<form onSubmit={this.handleSubmit}>
 							<input type="text" name="name" placeholder="name" value={this.state.name} onChange={this.handleInput}/> <br/>
 							<input type="text" name="address" placeholder="address" value={this.state.address} onChange={this.handleInput}/> <br/>
@@ -56,7 +57,7 @@ class VolunteerRegistration extends Component {
 							<button type="Submit" value="register" onChange={this.handleInput}>Submit</button>
 						</form>
 					</div> 
-				}
+				
 
 			</div>
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-
+import './style.css'
 
 
 
@@ -9,7 +9,7 @@ const ScheduleList = ({schedules}) => {
 
 	const scheduleList = schedules.map((schedule, i) => {
 		return (
-			<li key={schedule.id}>{schedule.title}<br/>{schedule.date}<br/>{schedule.type}</li>
+			<li className="scheduleList" key={schedule.id}>{schedule.title}<br/> {schedule.date}</li>
 
 
 

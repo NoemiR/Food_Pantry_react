@@ -2,7 +2,7 @@ import React, {Componet} from 'react';
 import FamilyRegistration from '../FamilyRegistration'
 import VolunteerRegistration from '../VolunteerRegistration'
 import {Route, Link, Switch} from 'react-router-dom'
-import ScheduleList from '../ScheduleList'
+import ScheduleDisplay from '../ScheduleDisplay'
 
 const Header = () => {
 	return(
@@ -31,7 +31,7 @@ const App = () => {
         <Switch>
            <Route exact path="/family" component={FamilyRegistration}/>
            <Route exact path="/volunteer" component={VolunteerRegistration}/>
-           <Route exact path="/schedules" component={ScheduleList}/>
+           <Route exact path="/schedules" component={ScheduleDisplay}/>
            <Route component={My404}/>
         </Switch>
       </main>

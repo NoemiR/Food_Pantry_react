@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import './style.css'
 
 const VolunteerList = ({volunteers}) => {
 	console.log(volunteers, 'Mapping volunteers')
@@ -8,7 +8,7 @@ const VolunteerList = ({volunteers}) => {
 	const volunteerList = volunteers.map((volunteer, i)=> {
 		return (
 
-			<li key={volunteer.id}>{volunteer.name}<br/>{volunteer.phone}</li>
+			<li className="volunteerList" key={volunteer.id}>{volunteer.name}<br/>{volunteer.phone}</li>
 
 
 		)

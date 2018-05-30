@@ -1,0 +1,9 @@
+.volunteerList {
+	display: block;
+	text-align: center;
+	border: 1px solid black;
+	background: rgba(0, 0, 0, 0.3);
+	margin: 5px;
+
+
+}
