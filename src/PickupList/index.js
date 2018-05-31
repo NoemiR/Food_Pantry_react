@@ -9,7 +9,10 @@ const PickupList = ({pickups}) => {
 
 	const pickupList = pickups.map((pickup, i) => {
 		return (
-			<li className="pickupList" key={pickup.id}>Date {pickup.date}<br/>Family Id {pickup.family_id}<br/>Schedule {pickup.schedule_id}</li>
+			<li className="pickupList" key={pickup.id}>Date {pickup.date}<br/>Family Id {pickup.family_id}<br/>Schedule {pickup.schedule_id}<br/>
+				
+				<button>Check In Family</button>
+			</li>
 
 
 

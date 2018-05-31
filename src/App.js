@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Logo from './Logo.png';
 import './App.css';
-
+import FamilyShowPage from './FamilyShowPage'
 import FamilyDisplay from './FamilyDisplay'
 import ScheduleDisplay from './ScheduleDisplay'
 import PickupDisplay from './PickupDisplay'
@@ -25,11 +25,14 @@ class App extends Component {
       admins: [],
       loggedIn: false,
       whichPage: '',
-      buttons: true
+      buttons: true,
+      family: {},
+
     }
   }
 
 
+  
 
 
   componentDidMount(){
@@ -72,6 +75,16 @@ class App extends Component {
     .catch((err) => {
       console.log(err)
     })
+
+    this.getFamilyPickups()
+    .then((familyPickups) => {
+      
+      this.setState({familyPickups: familyPickups})
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
   }
 
 
@@ -79,7 +92,30 @@ class App extends Component {
 
 
 
+getFamilyPickups = async (e) => {
+      e.preventDefault();
+      const id = e.currentTarget.id;
 
+
+      // fetch returns a promise. After we "await" it, it is resolved to a Response object
+      // which we are assigning to the variable response
+      // -- see https://developer.mozilla.org/en-US/docs/Web/API/Response
+      const response = await fetch('http://localhost:9292/pickups/families/' + id, {
+        credentials: 'include'
+      });
+
+      // runnning .json on response (Which is a response object) 
+      // gives us another promise
+      // once we "await" that promise (meaning -- once that promise is resolved -- meaning the async action is finished), 
+      // then we have the actual data in json
+      const data = await response.json();
+
+      console.log(data, 'this is "data" in getFamilyPickups in App.js')
+
+      this.setState({
+        pickups: data.family_pickups
+      })
+    }
 
 
 
@@ -92,6 +128,9 @@ class App extends Component {
     const families = await familiesJson.json();
       return families;
   }
+
+
+
 
 
   registerFamily = async (name, address, phone, income, household, employment, birthdate, intake) => {
@@ -259,10 +298,60 @@ class App extends Component {
   // }
 
 
+  getFamilyPickups = async (e) => {
+    e.preventDefault();
+    const id = e.currentTarget.id;
 
 
+    // fetch returns a promise. After we "await" it, it is resolved to a Response object
+    // which we are assigning to the variable response
+    // -- see https://developer.mozilla.org/en-US/docs/Web/API/Response
+    const response = await fetch('http://localhost:9292/pickups/families/' + id, {
+      credentials: 'include'
+    });
+
+    // runnning .json on response (Which is a response object) 
+    // gives us another promise
+    // once we "await" that promise (meaning -- once that promise is resolved -- meaning the async action is finished), 
+    // then we have the actual data in json
+    const data = await response.json();
+
+    console.log(data, 'this is "data" in getFamilyPickups in App.js')
+
+    this.setState({
+      pickups: data.family_pickups
+    })
+  }
+
+  getFamily = async (e) => {
+    e.preventDefault();
+    const id = e.currentTarget.id;
+
+    const familyResponse= await fetch('http://localhost:9292/families/' + id, {
+      credentials: 'include'
+    });
+    const familyData = await familyResponse.json();
+    console.log(id, familyData, 'this is "familyData" in getFamily in App.js')
+    this.setState({
+      family: familyData
+    })
+  }
 
 
+  checkInFamilyPickups = async (e) => {
+    const id = e.currentTarget.id;
+    const familyPickups = await fetch('http://localhost:9292/pickups/families/' + id, {
+      method: 'PUT',
+      credentials: 'include',
+      body: JSON.stringify({
+        checkin: true
+
+      })
+    });
+    const pickupParsedAddResponse = await familyPickups.json()
+    this.setState({pickups: [...this.state.pickups, pickupParsedAddResponse]})
+    return pickupParsedAddResponse;
+  }
 
 
 
@@ -280,24 +369,7 @@ class App extends Component {
     return pickups;
   }
 
-  addPickup = async (date, title, note, volunteer_id, family_id) => {
-    const schedule = await fetch('http://localhost:9292/schedules', {
-      method: 'POST',
-      credentials: 'include',
-      body: JSON.stringify({
-        date: date,
-        title: title,
-        note: note,
-        volunteer_id: volunteer_id, 
-        family_id: family_id
-
-      })
-    });
-      const scheduleParsedAddResponse = await schedule.json()
-      this.setState({schedule: [...this.state.schedules, scheduleParsedAddResponse]})
-      return scheduleParsedAddResponse;
-  
-  }  
+ 
 
 
   handleClick = (e) => {
@@ -322,31 +394,33 @@ class App extends Component {
 
     let page;
       if(this.state.whichPage == "family"){
-          page = <FamilyDisplay getFamilies={this.getfamilies} registerFamily={this.registerFamily} families={this.state.families}/>
+          page = <FamilyDisplay getFamilies={this.getfamilies} registerFamily={this.registerFamily} getFamilyPickups={this.getFamilyPickups} families={this.state.families} getFamily={this.getFamily}/>
       } else if(this.state.whichPage == "volunteer"){
         page=  <VolunteerDisplay getVolunteers={this.getVolunteers} registerVolunteer={this.registerVolunteer} volunteers={this.state.volunteers}/>
       }else {
-         page = <ScheduleDisplay getSchedules={this.getSchedules} addSchedule={this.addSchedule} schedules={this.state.schedules}/>
+         page = <ScheduleDisplay getSchedules={this.getSchedules} addSchedule={this.addSchedule} schedules={this.state.schedules} />
       }
 
     return (
      
       <div className="App">
-
-        <button className="button" id="family" onClick={this.handleClick}>Family</button>
-        <button className="button" id="volunteer" onClick={this.handleClick}>Volunteer</button>
-        <button className="button" id="schedule" onClick={this.handleClick}>Schedule</button>
-
         <header className="App-header">
-        <img src={Logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">One helping hand in time is better than one hundred that are too late</h1>
+          <img src={Logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">One helping hand in time is better than one hundred that are too late</h1>
         </header>
+        <div className="first" >
+          <button className="button" id="family" onClick={this.handleClick}>Family</button>
+          <button className="button" id="volunteer" onClick={this.handleClick}>Volunteer</button>
+          <button className="button" id="schedule" onClick={this.handleClick}>Schedule</button>
+        </div>
+
+
      
         <div>
           {page}
         </div>
-       
-        <PickupDisplay getPickups={this.getPickups} pickups={this.state.pickups}/>
+       <FamilyShowPage family={this.state.family} pickups={this.state.pickups}  getFamilyPickups={this.getFamilyPickups}/>
+        
       </div>
     );
   }

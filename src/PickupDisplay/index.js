@@ -12,9 +12,9 @@ class PickupDisplay extends Component {
 	render(){
 		return(
 			<div>
-			<h1>Pickup </h1>
-			 <PickupList getPickups={this.props.getPickups} pickups={this.props.pickups}/>
-			 
+				<h1>Pickup </h1>
+				<PickupList getFamilyPickups={this.props.getFamilyPickups} getPickups={this.props.getPickups} pickups={this.props.pickups}/>
+			 	
 			</div>
 
 		)	
