@@ -6,7 +6,7 @@ import FamilyDisplay from './FamilyDisplay'
 import ScheduleDisplay from './ScheduleDisplay'
 import PickupDisplay from './PickupDisplay'
 import VolunteerDisplay from './VolunteerDisplay'
-//import AdminHeader from './AdminHeader'
+
 
 
 
@@ -92,30 +92,30 @@ class App extends Component {
 
 
 
-getFamilyPickups = async (e) => {
-      e.preventDefault();
-      const id = e.currentTarget.id;
+  getFamilyPickups = async (e) => {
+    e.preventDefault();
+    const id = e.currentTarget.id;
 
 
-      // fetch returns a promise. After we "await" it, it is resolved to a Response object
-      // which we are assigning to the variable response
-      // -- see https://developer.mozilla.org/en-US/docs/Web/API/Response
-      const response = await fetch('http://localhost:9292/pickups/families/' + id, {
-        credentials: 'include'
-      });
+    // fetch returns a promise. After we "await" it, it is resolved to a Response object
+    // which we are assigning to the variable response
+    // -- see https://developer.mozilla.org/en-US/docs/Web/API/Response
+    const response = await fetch('http://localhost:9292/pickups/families/' + id, {
+      credentials: 'include'
+    });
 
-      // runnning .json on response (Which is a response object) 
-      // gives us another promise
-      // once we "await" that promise (meaning -- once that promise is resolved -- meaning the async action is finished), 
-      // then we have the actual data in json
-      const data = await response.json();
+    // runnning .json on response (Which is a response object) 
+    // gives us another promise
+    // once we "await" that promise (meaning -- once that promise is resolved -- meaning the async action is finished), 
+    // then we have the actual data in json
+    const data = await response.json();
 
-      console.log(data, 'this is "data" in getFamilyPickups in App.js')
+    console.log(data, 'this is "data" in getFamilyPickups in App.js')
 
-      this.setState({
-        pickups: data.family_pickups
-      })
-    }
+    this.setState({
+      pickups: data.family_pickups
+    })
+  }
 
 
 
@@ -150,23 +150,23 @@ getFamilyPickups = async (e) => {
     })
 
     const parsedRegisterResponse = await responsePromise.json();
-    if(parsedRegisterResponse.success){
-      this.setState({
-        loggedIn: true
-      })
+      if(parsedRegisterResponse.success){
+        this.setState({
+          loggedIn: true
+        })
 
-      this.getFamilies()
-      .then((families) => {
-        console.log(families, ' inside of parsedRegisterResponse')
-        this.setState({families: families})
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    } else{ 
-      this.setState({
-        loginErr: parsedRegisterResponse.message
-      })
+        this.getFamilies()
+        .then((families) => {
+          console.log(families, ' inside of parsedRegisterResponse')
+          this.setState({families: families})
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }else{ 
+        this.setState({
+          loginErr: parsedRegisterResponse.message
+        })
     }
   }
 
@@ -204,25 +204,27 @@ getFamilyPickups = async (e) => {
     })
 
     const parsedVolounteerRegisterResponse = await promiseResponse.json();
-    if(parsedVolounteerRegisterResponse.success){
-      this.setState({
-        loggedIn: true
-      })
-      this.getVolunteers()
-        .then((volunteers) => {
-          console.log(volunteers, 'this is the parsedVolounteerRegisterResponse')
-          this.setState({volunteers: volunteers})
+      if(parsedVolounteerRegisterResponse.success){
+        this.setState({
+          loggedIn: true
         })
-        .catch((err) => {
-          console.log(err)
-        })
-    } else {
-      this.setState({
-        loginErr: parsedVolounteerRegisterResponse.message
+        this.getVolunteers()
+          .then((volunteers) => {
+            console.log(volunteers, 'this is the parsedVolounteerRegisterResponse')
+            this.setState({volunteers: volunteers})
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      } else {
+        this.setState({
+          loginErr: parsedVolounteerRegisterResponse.message
       })
-
     }
   }
+
+
+
   getVolunteers = async () => {
     const volunteersJson = await fetch('http://localhost:9292/volunteers', {
       credentials: 'include'
@@ -230,11 +232,6 @@ getFamilyPickups = async (e) => {
     const volunteers = await volunteersJson.json();
     return volunteers;
   }
-
-
-
-
-
 
 
 
@@ -298,10 +295,15 @@ getFamilyPickups = async (e) => {
   // }
 
 
+
+
+
+
+
+
   getFamilyPickups = async (e) => {
     e.preventDefault();
     const id = e.currentTarget.id;
-
 
     // fetch returns a promise. After we "await" it, it is resolved to a Response object
     // which we are assigning to the variable response
@@ -336,6 +338,9 @@ getFamilyPickups = async (e) => {
       family: familyData
     })
   }
+
+
+
 
 
   checkInFamilyPickups = async (e) => {
@@ -398,7 +403,7 @@ getFamilyPickups = async (e) => {
       } else if(this.state.whichPage == "volunteer"){
         page=  <VolunteerDisplay getVolunteers={this.getVolunteers} registerVolunteer={this.registerVolunteer} volunteers={this.state.volunteers}/>
       }else {
-         page = <ScheduleDisplay getSchedules={this.getSchedules} addSchedule={this.addSchedule} schedules={this.state.schedules} />
+         page = <ScheduleDisplay getSchedules={this.getSchedules} addSchedule={this.addSchedule} schedules={this.state.schedules}/>
       }
 
     return (
@@ -419,7 +424,7 @@ getFamilyPickups = async (e) => {
         <div>
           {page}
         </div>
-       <FamilyShowPage family={this.state.family} pickups={this.state.pickups}  getFamilyPickups={this.getFamilyPickups}/>
+       <FamilyShowPage family={this.state.family} families={this.state.families} pickups={this.state.pickups}  getFamilyPickups={this.getFamilyPickups}/>
         
       </div>
     );

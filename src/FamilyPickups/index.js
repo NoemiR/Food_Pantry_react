@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 
 
-class FamilyPickups extends Component {
+class CreatePickup extends Component {
 	constructor(){
 		super();
 		this.state = {

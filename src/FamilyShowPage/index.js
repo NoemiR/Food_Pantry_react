@@ -1,36 +1,22 @@
 import React, {Component} from 'react';
-import PickupList from '../PickupList'
+import PickupList from '../PickupList';
+import MapFamilyPickups from '../MapFamilyPickups'
 
 class FamilyShowPage extends Component {
 	constructor(){
 		super()
-
+		this.state = {
+			pickups: [],
+			checkin: true,
+			
+		}
+		//add state where you can save the pickups
 	}
 
-	getFamilyPickups = async (e) => {
-	    e.preventDefault();
-	    const id = e.currentTarget.id;
 
 
-	    // fetch returns a promise. After we "await" it, it is resolved to a Response object
-	    // which we are assigning to the variable response
-	    // -- see https://developer.mozilla.org/en-US/docs/Web/API/Response
-	    const response = await fetch('http://localhost:9292/pickups/families/' + id, {
-	      credentials: 'include'
-	    });
-
-	    // runnning .json on response (Which is a response object) 
-	    // gives us another promise
-	    // once we "await" that promise (meaning -- once that promise is resolved -- meaning the async action is finished), 
-	    // then we have the actual data in json
-	    const data = await response.json();
-
-	    console.log(data, 'this is "data" in getFamilyPickups in App.js')
-
-	    this.setState({
-	      pickups: data.family_pickups
-	    })
-	  }
+	
+		
 
 
 	render(){
@@ -38,10 +24,14 @@ class FamilyShowPage extends Component {
 		if(this.props.family && this.props.family.show_family) {
 			return(
 				<div>
-
-				 	{this.props.family.show_family.name}
-				 	
-				 	<PickupList getPickups={this.props.getPickups} getFamilypickups={this.getFamilypickups} pickups={this.props.pickups}/>
+					<h1>FamilyShowPage</h1>
+				 	{this.props.family.show_family.name}<br/>
+				 	{this.props.family.show_family.phone}<br/>
+				 	{this.props.family.show_family.address}<br/>
+				
+				 	<button id={this.props.family.show_family.id} onClick={this.props.getFamilyPickups}>Family Pickups</button>
+				 	<PickupList getFamilyPickups={this.props.getFamilyPickups} getPickups={this.props.getPickups} pickups={this.props.pickups}/>
+			 			
 				</div>
 
 			)

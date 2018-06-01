@@ -11,7 +11,7 @@ const PickupList = ({pickups}) => {
 		return (
 			<li className="pickupList" key={pickup.id}>Date {pickup.date}<br/>Family Id {pickup.family_id}<br/>Schedule {pickup.schedule_id}<br/>
 				
-				<button>Check In Family</button>
+				
 			</li>
 
 
@@ -21,6 +21,7 @@ const PickupList = ({pickups}) => {
 
 	return (
 		<div>
+		<h1>Pick up list </h1>
 			<ul>
 				{pickupList}
 			</ul>

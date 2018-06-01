@@ -14,10 +14,6 @@ const FamilyList = ({families, getFamily}) => {
 	const familyList = families.map((family, i) => {
 		return (
 			<li className="familyList" key={family.id} id={family.id} onClick={getFamily}>{family.name}<br/>{family.phone}<br/>{family.address}</li>
-
-
-
-
 		)
 	})
 
@@ -25,7 +21,7 @@ const FamilyList = ({families, getFamily}) => {
 
 
 		<div>
-
+		
 			<ul>
 
 				{familyList}
