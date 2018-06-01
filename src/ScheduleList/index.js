@@ -11,8 +11,6 @@ const ScheduleList = ({schedules}) => {
 		return (
 			<li className="scheduleList" key={schedule.id}>{schedule.title}<br/> {schedule.date}</li>
 
-
-
 		)
 	})
 

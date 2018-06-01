@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 
 
-class CreatePickup extends Component {
+class CreatePickups extends Component {
 	constructor(){
 		super();
 		this.state = {
@@ -37,7 +37,7 @@ class CreatePickup extends Component {
 	}
 
 	render() {
-		console.log(this.props.pickups, 'this is addFamilyPickups')
+		console.log(this.props.pickups, 'this is createFamilyPickups')
 
 		return (
 
@@ -45,12 +45,12 @@ class CreatePickup extends Component {
 				
 			
 				<div className="form">
-					<h1>Create Schedule</h1>
+					<h1>Create Pickup</h1>
 					<form onSubmit={this.handleSubmit}>
 						<input type="text" name="date" placeholder="date" value={this.state.date} onChange={this.handleInput}/> <br/>
 						<input type="text" name="schedule_id" placeholder="schedule id" value={this.state.schedule_id} onChange={this.handleInput}/> <br/>
 						<input type="text" name="family_id" placeholder="family id" value={this.state.family_id} onChange={this.handleInput}/> <br/>
-						<input type="submit" value="Add Schedule">
+						<input type="submit" value="Add Schedule"/>
 					</form>
 				</div>
 			
@@ -61,4 +61,4 @@ class CreatePickup extends Component {
 
 
 
-export default FamilyPickups;
+export default CreatePickups;

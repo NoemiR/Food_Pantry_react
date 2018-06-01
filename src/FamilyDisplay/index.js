@@ -14,9 +14,9 @@ class FamilyDisplay extends Component {
 	render(){
 		return(
 			<div>
-			 	<h1> Family Display</h1>
 			 	
 			 	<FamilyRegistration registerFamily={this.props.registerFamily} families={this.props.families}/>
+			 	<h1>Each family is currently active</h1>
 			 	<FamilyList getFamilies={this.props.getFamilies} families={this.props.families} getFamily={this.props.getFamily}/>
 
 			</div>

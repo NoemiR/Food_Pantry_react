@@ -12,9 +12,9 @@ class VolunteerDisplay extends Component {
 	render(){
 		return(
 			<div>
-			<h1> Volunteers</h1>
-			 <VolunteerList getVolunteers={this.props.getVolunteers} volunteers={this.props.volunteers}/>
-			 <VolunteerRegistration registerVolunteer={this.props.registerVolunteer} volunteers={this.props.volunteers}/>
+				<h1> Volunteers</h1>
+				<VolunteerList getVolunteers={this.props.getVolunteers} volunteers={this.props.volunteers}/>
+			 	<VolunteerRegistration registerVolunteer={this.props.registerVolunteer} volunteers={this.props.volunteers}/>
 			</div>
 
 		)	

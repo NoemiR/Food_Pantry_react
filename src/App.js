@@ -120,6 +120,7 @@ class App extends Component {
 
 
 
+// getting all families
 
   getFamilies = async () => {
     const familiesJson = await fetch('http://localhost:9292/families', {
@@ -132,7 +133,7 @@ class App extends Component {
 
 
 
-
+//Register family 
   registerFamily = async (name, address, phone, income, household, employment, birthdate, intake) => {
     const responsePromise = await fetch('http://localhost:9292/families/register', {
       method: 'POST',
@@ -183,7 +184,7 @@ class App extends Component {
 
 
 
-
+//Register volunteers and getting all the volunteers
 
 
 
@@ -240,7 +241,7 @@ class App extends Component {
 
 
 
-
+//Getting schedules and adding schedules
 
   getSchedules = async () => {
     const schedulesJson = await fetch('http://localhost:9292/schedules', {
@@ -297,8 +298,27 @@ class App extends Component {
 
 
 
+  getFamily = async (e) => {
+    e.preventDefault();
+    const id = e.currentTarget.id;
 
+    const familyResponse= await fetch('http://localhost:9292/families/' + id, {
+      credentials: 'include'
+    });
+    const familyData = await familyResponse.json();
+    console.log(id, familyData, 'this is "familyData" in getFamily in App.js')
+    this.setState({
+      family: familyData
+    })
+  }
 
+  getPickups = async () => {
+    const pickupsJson = await fetch('http://localhost:9292/pickups', {
+      credentials: 'include'
+    });
+    const pickups = await pickupsJson.json();
+    return pickups;
+  }
 
 
   getFamilyPickups = async (e) => {
@@ -325,22 +345,6 @@ class App extends Component {
     })
   }
 
-  getFamily = async (e) => {
-    e.preventDefault();
-    const id = e.currentTarget.id;
-
-    const familyResponse= await fetch('http://localhost:9292/families/' + id, {
-      credentials: 'include'
-    });
-    const familyData = await familyResponse.json();
-    console.log(id, familyData, 'this is "familyData" in getFamily in App.js')
-    this.setState({
-      family: familyData
-    })
-  }
-
-
-
 
 
   checkInFamilyPickups = async (e) => {
@@ -361,19 +365,6 @@ class App extends Component {
 
 
 
-
-
-
-
-
-  getPickups = async () => {
-    const pickupsJson = await fetch('http://localhost:9292/pickups', {
-      credentials: 'include'
-    });
-    const pickups = await pickupsJson.json();
-    return pickups;
-  }
-
  
 
 
@@ -386,24 +377,16 @@ class App extends Component {
   }
 
 
-
-
-
-
-
-
-
-
   render() {
     console.log(this.state, ' this.state')
 
     let page;
       if(this.state.whichPage == "family"){
-          page = <FamilyDisplay getFamilies={this.getfamilies} registerFamily={this.registerFamily} getFamilyPickups={this.getFamilyPickups} families={this.state.families} getFamily={this.getFamily}/>
-      } else if(this.state.whichPage == "volunteer"){
+        page = <FamilyDisplay getFamilies={this.getfamilies} registerFamily={this.registerFamily} getFamilyPickups={this.getFamilyPickups} families={this.state.families} getFamily={this.getFamily}/>
+      }else if(this.state.whichPage == "volunteer"){
         page=  <VolunteerDisplay getVolunteers={this.getVolunteers} registerVolunteer={this.registerVolunteer} volunteers={this.state.volunteers}/>
       }else {
-         page = <ScheduleDisplay getSchedules={this.getSchedules} addSchedule={this.addSchedule} schedules={this.state.schedules}/>
+        page = <ScheduleDisplay getSchedules={this.getSchedules} addSchedule={this.addSchedule} schedules={this.state.schedules} />
       }
 
     return (
@@ -419,12 +402,11 @@ class App extends Component {
           <button className="button" id="schedule" onClick={this.handleClick}>Schedule</button>
         </div>
 
-
-     
         <div>
           {page}
         </div>
-       <FamilyShowPage family={this.state.family} families={this.state.families} pickups={this.state.pickups}  getFamilyPickups={this.getFamilyPickups}/>
+
+        <FamilyShowPage family={this.state.family} families={this.state.families} pickups={this.state.pickups}  getFamilyPickups={this.getFamilyPickups}/>
         
       </div>
     );

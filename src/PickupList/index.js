@@ -21,7 +21,7 @@ const PickupList = ({pickups}) => {
 
 	return (
 		<div>
-		<h1>Pick up list </h1>
+			<h1>Pickup List</h1>
 			<ul>
 				{pickupList}
 			</ul>

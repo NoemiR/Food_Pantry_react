@@ -31,8 +31,8 @@ class VolunteerRegistration extends Component {
 
 	handleInput = (e) => {
 		const state = this.state;
-			state[e.currentTarget.name] = e.currentTarget.value;
-				this.setState(state)
+		state[e.currentTarget.name] = e.currentTarget.value;
+		this.setState(state)
 	}
 
 

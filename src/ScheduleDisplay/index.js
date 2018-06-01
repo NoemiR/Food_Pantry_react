@@ -12,9 +12,9 @@ class ScheduleDisplay extends Component {
 	render(){
 		return(
 			<div>
-			<h1>Schedule</h1>
-			 <ScheduleList getSchedules={this.props.getSchedules} schedules={this.props.schedules}/>
-			 <CreateSchedule addSchedule={this.props.addSchedule} schedules={this.props.schedules}/>
+				<h1>Schedule</h1>
+				<ScheduleList getSchedules={this.props.getSchedules} schedules={this.props.schedules}/>
+				<CreateSchedule addSchedule={this.props.addSchedule} schedules={this.props.schedules}/>
 			</div>
 
 		)	

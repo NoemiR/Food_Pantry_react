@@ -32,7 +32,7 @@ class FamilyRegistration extends Component {
 
 	handleInput = (e) => {
 		const state = this.state;
-			state[e.currentTarget.name] = e.currentTarget.value; this.setState(state)
+		state[e.currentTarget.name] = e.currentTarget.value; this.setState(state)
 	}
 
 	render() {
@@ -43,21 +43,20 @@ class FamilyRegistration extends Component {
 			<div> 
 				
 				
-					<div className="form">
+				<div className="form">
 					<h1>Family Registration</h1>
-						<form onSubmit={this.handleSubmit}>
-							<input type="text" name="name" placeholder="name" value={this.state.name} onChange={this.handleInput}/> <br/>
-							<input type="text" name="phone" placeholder="phone" value={this.state.phone} onChange={this.handleInput}/> <br/>
-							<input type="text" name="address" placeholder="address" value={this.state.address} onChange={this.handleInput}/> <br/>
-							<input type="text" name="income" placeholder="income" value={this.state.income} onChange={this.handleInput} /> <br/>
-							<input type="text" name="household" placeholder="household size" value={this.state.household} onChange={this.handleInput}/> <br/>
-							<input type="text" name="employment" placeholder="employment" value={this.state.employment} onChange={this.handleInput}/> <br/>
-							<input type="text" name="birthdate" placeholder="birthdate" value={this.state.birthdate} onChange={this.handleInput}/> <br/>
-							<input type="text" name="intake" placeholder="intake" value={this.state.intake} onChange={this.handleInput}/> <br/>
-							<button type="Submit" value="register" onChange={this.handleInput}>Submit</button>
-						</form>
-					</div> 
-
+					<form onSubmit={this.handleSubmit}>
+						<input type="text" name="name" placeholder="name" value={this.state.name} onChange={this.handleInput}/> <br/>
+						<input type="text" name="phone" placeholder="phone" value={this.state.phone} onChange={this.handleInput}/> <br/>
+						<input type="text" name="address" placeholder="address" value={this.state.address} onChange={this.handleInput}/> <br/>
+						<input type="text" name="income" placeholder="income" value={this.state.income} onChange={this.handleInput} /> <br/>
+						<input type="text" name="household" placeholder="household size" value={this.state.household} onChange={this.handleInput}/> <br/>
+						<input type="text" name="employment" placeholder="employment" value={this.state.employment} onChange={this.handleInput}/> <br/>
+						<input type="text" name="birthdate" placeholder="birthdate" value={this.state.birthdate} onChange={this.handleInput}/> <br/>
+						<input type="text" name="intake" placeholder="intake" value={this.state.intake} onChange={this.handleInput}/> <br/>
+						<button type="Submit" value="register" onChange={this.handleInput}>Submit</button>
+					</form>
+				</div> 
 			
 			</div>
 		)

@@ -33,7 +33,7 @@ class CreateSchedule extends Component {
 	handleInput = (e) => {
 		console.log("this is handle Input in create schedule ")
 		const state = this.state;
-			state[e.currentTarget.name] = e.currentTarget.value; this.setState(state)
+		state[e.currentTarget.name] = e.currentTarget.value; this.setState(state)
 	}
 
 

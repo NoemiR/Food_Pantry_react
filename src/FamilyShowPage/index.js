@@ -15,16 +15,12 @@ class FamilyShowPage extends Component {
 
 
 
-	
-		
-
-
 	render(){
 		console.log(this.props.family, 'show page')
 		if(this.props.family && this.props.family.show_family) {
 			return(
 				<div>
-					<h1>FamilyShowPage</h1>
+					<h1>Family's Profile</h1>
 				 	{this.props.family.show_family.name}<br/>
 				 	{this.props.family.show_family.phone}<br/>
 				 	{this.props.family.show_family.address}<br/>
@@ -35,8 +31,7 @@ class FamilyShowPage extends Component {
 				</div>
 
 			)
-		}
-		else {
+		}else {
 			return <div></div>
 		}
 
